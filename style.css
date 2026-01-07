@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 *{
   margin:0;
   padding:0;
@@ -113,8 +113,10 @@ body{
 .signature{
   color:#888;
   font-size:14px;
-=======
-*{
+    margin-top:15px;    
+};
+
+ *{
   margin:0;
   padding:0;
   box-sizing:border-box;
@@ -228,5 +230,5 @@ body{
 .signature{
   color:#888;
   font-size:14px;
->>>>>>> ef60b14cd7b424679e4c23e5e594a73468b43d5b
+    margin-top:15px;
 }
