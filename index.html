@@ -1,57 +1,148 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Birthday Shorouk</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>عيد ميلاد سعيد شروق</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Background Animation -->
-  <div class="bg"></div>
+<div class="bg"></div>
 
-  <section class="card">
-    <h1>Happy 16th Birthday</h1>
-    <h2>Shorouk Yasser 💖</h2>
+<!-- بالونات -->
+<div class="balloons"></div>
 
-    <p>
-      Today is all about you ✨  
-      May your life be filled with happiness, love,  
-      and beautiful memories that never fade.
-    </p>
+<!-- الكارت الأول -->
+<section class="card card-one" id="cardOne">
+  <h1 id="title"></h1>
+  <h2 id="name"></h2>
 
-    <!-- Images -->
-    <div class="gallery">
-      <img src="img/sh1.jpeg" alt="">
-      <img src="img/sh2.jpeg" alt="">
-      <img src="img/sh3.jpeg" alt="">
-      <img src="img/sh4.jpeg" alt="">
-    </div>
+  <div class="gallery" id="gallery"></div>
 
-    <!-- Videos (Square Layout) -->
-    <div class="videos">
-      <div class="video-box">
-        <video src="videos/sh2.mp4" muted controls loop></video>
-      </div>
+  <div class="videos" id="videos"></div>
 
-      <div class="video-box">
-        <video src="videos/sh3.mp4" muted controls loop></video>
-      </div>
+  <span class="signature" id="signature"></span>
+</section>
 
-      <div class="video-box">
-        <video src="videos/sh4.mp4" muted controls loop></video>
-      </div>
+<!-- الكارت التاني (الرسالة) -->
+<section class="card card-two" id="cardTwo">
+  <p id="longMessage"></p>
+</section>
 
-      <div class="video-box">
-        <video src="videos/shour.mp4" muted controls loop></video>
-      </div>
-    </div>
+<script>
+/* ===== بالونات ===== */
+const balloons = document.querySelector('.balloons');
+for(let i=0;i<20;i++){
+  const b = document.createElement('span');
+  b.style.left = Math.random()*100 + '%';
+  b.style.animationDuration = (6 + Math.random()*6) + 's';
+  balloons.appendChild(b);
+}
 
-    <span class="signature">
-      Made especially for you 💕
-    </span>
-  </section>
+/* ===== محتوى الكارت الأول ===== */
+const cardOneContent = [
+  {type:'title', text:'عيد ميلاد سعيد 🎉'},
+  {type:'name', text:'شروق ياسر 💖'},
+  {type:'gallery', imgs:['img/sh1.jpeg','img/sh2.jpeg','img/sh3.jpeg','img/sh4.jpeg']},
+  {type:'videos', vids:['videos/sh2.mp4','videos/sh3.mp4','videos/sh4.mp4','videos/shour.mp4']},
+  {type:'signature', text:'من أخوكي اللي بيحبك ❤️'}
+];
+
+/* ===== محتوى الرسالة ===== */
+const messageText = `
+شروق أنا بحبك أوي يا أحلى أخت ليا،
+إنتي حياتي كلها،
+إنتي صحبتي وأمي وضهري وأماني في الدنيا دي 💖
+
+بحبك يا روحي حب ما يتوصفش،
+وربنا ما يحرمنيش منك أبداً 🙏
+
+دلوقتي كملتي 16 سنة،
+وكل سنة وإنتي أجمل وأقوى وأنجح 🌸
+
+أتمنى لك حياة مليانة فرح،
+وضحكة دايمًا من قلبك،
+وكل حلم في بالك يتحقق قدام عينيكي ✨
+
+خليكي دايمًا واثقة في نفسك،
+فاكرة إنك مميزة،
+وأنا دايمًا جنبك مهما حصل ❤️
+
+عيد ميلاد سعيد يا عمري 🎂🎉
+`;
+
+/* ===== بناء الكارت الأول تدريجي ===== */
+function buildCardOne(index=0){
+  if(index >= cardOneContent.length){
+    // scroll ناعم للكارت التاني
+    document.getElementById('cardTwo').scrollIntoView({behavior:'smooth'});
+    setTimeout(typeMessage, 800); // بدء كتابة الرسالة بعد قليل
+    return;
+  }
+
+  const el = cardOneContent[index];
+  switch(el.type){
+    case 'title': document.getElementById('title').textContent = el.text; break;
+    case 'name':
+      let i=0;
+      function typeName(){
+        if(i < el.text.length){
+          document.getElementById('name').textContent += el.text[i];
+          i++;
+          setTimeout(typeName, 150);
+        } else { setTimeout(()=>buildCardOne(index+1), 500); }
+      }
+      typeName(); return;
+    case 'gallery':
+      const gallery = document.getElementById('gallery');
+      el.imgs.forEach(src=>{
+        const img = document.createElement('img');
+        img.src = src;
+        gallery.appendChild(img);
+      }); break;
+    case 'videos':
+      const videos = document.getElementById('videos');
+      el.vids.forEach(src=>{
+        const vid = document.createElement('video');
+        vid.src = src;
+        vid.muted = true;
+        vid.controls = true;
+        vid.loop = true;
+        videos.appendChild(vid);
+      }); break;
+    case 'signature':
+      document.getElementById('signature').textContent = el.text; break;
+  }
+
+  setTimeout(()=>buildCardOne(index+1), 800);
+}
+
+/* ===== Typing effect للرسالة ===== */
+function typeMessage(){
+  const msgEl = document.getElementById('longMessage');
+  msgEl.textContent = '';
+  let i=0;
+  document.getElementById('cardTwo').style.opacity = 1;
+
+  function typeChar(){
+    if(i < messageText.length){
+      msgEl.textContent += messageText[i];
+      i++;
+      setTimeout(typeChar, 60);
+    } else {
+      // بعد انتهاء الرسالة scroll ناعم للعودة للكارت الأول
+      setTimeout(()=>{
+        document.getElementById('cardTwo').style.opacity = 0;
+        document.getElementById('cardOne').scrollIntoView({behavior:'smooth'});
+      }, 3000);
+    }
+  }
+  typeChar();
+}
+
+/* ===== بدء الكارت الأول ===== */
+buildCardOne();
+</script>
 
 </body>
 </html>

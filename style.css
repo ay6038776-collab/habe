@@ -1,234 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins', Arial, sans-serif;
-}
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
 
-body{
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo', sans-serif;}
+body{min-height:200vh;direction:rtl;overflow-x:hidden;background:#f5f5f5;}
 
-/* Animated background */
+/* الخلفية */
 .bg{
-  position:fixed;
-  inset:0;
-  background: linear-gradient(270deg,#ff9a9e,#fad0c4,#fbc2eb,#a6c1ee);
+  position:fixed; inset:0;
+  background:linear-gradient(270deg,#ff9a9e,#fad0c4,#fbc2eb,#a6c1ee);
   background-size:800% 800%;
-  animation: gradient 15s ease infinite;
-  z-index:-1;
+  animation:bgMove 15s infinite;
+  z-index:-2;
 }
-
-@keyframes gradient{
+@keyframes bgMove{
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
 }
 
-/* Card */
-.card{
-  background:rgba(255,255,255,0.92);
-  padding:35px;
-  border-radius:25px;
-  text-align:center;
-  width:90%;
-  max-width:520px;
-  box-shadow:0 30px 60px rgba(0,0,0,0.25);
-  animation: fadeUp 1.5s ease;
-}
-
-@keyframes fadeUp{
-  from{opacity:0; transform:translateY(40px);}
-  to{opacity:1; transform:translateY(0);}
-}
-
-.card h1{
-  color:#ff4f8b;
-  font-size:28px;
-  margin-bottom:10px;
-}
-
-.card h2{
-  color:#333;
-  margin-bottom:20px;
-}
-
-.card p{
-  color:#555;
-  line-height:1.7;
-  margin-bottom:25px;
-}
-
-/* Gallery */
-.gallery{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  margin-bottom:25px;
-}
-
-.gallery img{
-  width:110px;
-  height:110px;
-  object-fit:cover;
-  border-radius:18px;
-  transition:.4s;
-  box-shadow:0 10px 25px rgba(0,0,0,.25);
-}
-
-.gallery img:hover{
-  transform:scale(1.1) rotate(2deg);
-}
-
-/* Videos Section */
-.videos{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-bottom:20px;
-}
-
-.videos video{
-  width:170px;
-  height:200px;
-  object-fit:cover;
-  border-radius:15px;
-  box-shadow:0 10px 25px rgba(0,0,0,.25);
-  transition:0.4s;
-}
-
-.videos video:hover{
-  transform:scale(1.08);
-}
-
-
-
-/* Signature */
-.signature{
-  color:#888;
-  font-size:14px;
-    margin-top:15px;    
-};
-
- *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:'Poppins', Arial, sans-serif;
-}
-
-body{
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
-}
-
-/* Animated background */
-.bg{
+/* البالونات */
+.balloons span{
   position:fixed;
-  inset:0;
-  background: linear-gradient(270deg,#ff9a9e,#fad0c4,#fbc2eb,#a6c1ee);
-  background-size:800% 800%;
-  animation: gradient 15s ease infinite;
+  bottom:-100px;
+  width:40px;
+  height:50px;
+  background:#ff6f91;
+  border-radius:50%;
+  animation:fly linear infinite;
   z-index:-1;
 }
-
-@keyframes gradient{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
+@keyframes fly{
+  to{transform:translateY(-120vh);}
 }
 
-/* Card */
+/* الكروت */
 .card{
-  background:rgba(255,255,255,0.92);
-  padding:35px;
+  width:90%;
+  max-width:600px;
+  margin:100px auto;
+  padding:40px;
+  background:rgba(255,255,255,0.95);
   border-radius:25px;
   text-align:center;
-  width:90%;
-  max-width:520px;
-  box-shadow:0 30px 60px rgba(0,0,0,0.25);
-  animation: fadeUp 1.5s ease;
+  box-shadow:0 20px 50px rgba(0,0,0,.3);
+  opacity:1;
+  transition:opacity 1s;
 }
 
-@keyframes fadeUp{
-  from{opacity:0; transform:translateY(40px);}
-  to{opacity:1; transform:translateY(0);}
+.card-two{
+  min-height:80vh;
+  opacity:0;
 }
 
-.card h1{
-  color:#ff4f8b;
-  font-size:28px;
-  margin-bottom:10px;
-}
-
-.card h2{
-  color:#333;
-  margin-bottom:20px;
-}
-
-.card p{
-  color:#555;
-  line-height:1.7;
-  margin-bottom:25px;
-}
-
-/* Gallery */
-.gallery{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  margin-bottom:25px;
-}
-
-.gallery img{
-  width:110px;
-  height:110px;
-  object-fit:cover;
-  border-radius:18px;
-  transition:.4s;
-  box-shadow:0 10px 25px rgba(0,0,0,.25);
-}
-
-.gallery img:hover{
-  transform:scale(1.1) rotate(2deg);
-}
-
-/* Videos Section */
-.videos{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-bottom:20px;
-}
-
-.videos video{
-  width:170px;
-  height:200px;
-  object-fit:cover;
-  border-radius:15px;
-  box-shadow:0 10px 25px rgba(0,0,0,.25);
-  transition:0.4s;
-}
-
-.videos video:hover{
-  transform:scale(1.08);
-}
-
-
-
-/* Signature */
-.signature{
-  color:#888;
-  font-size:14px;
-    margin-top:15px;
-}
+.card h1{font-size:32px;color:#ff2e7b;margin-bottom:10px;}
+.card h2{font-size:26px;color:#333;margin-bottom:20px;min-height:36px;}
+.gallery img{width:100px;height:100px;border-radius:15px;margin:5px;}
+.videos video{width:160px;border-radius:15px;margin:5px;}
+.signature{display:block;margin-top:20px;color:#777;}
+#longMessage{font-size:18px;line-height:1.9;white-space:pre-line;}
